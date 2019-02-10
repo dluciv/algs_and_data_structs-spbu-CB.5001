@@ -1,0 +1,29 @@
+@font-face {
+    font-family: 'OldStandard';
+    src: url(OldStandard-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OldStandard';
+    src: url(OldStandard-Bold.ttf) format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'OldStandard';
+    src: url(OldStandard-Italic.ttf) format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+/* no such font... =(
+@font-face {
+    font-family: 'OldStandard';
+    src: url(OldStandard-BoldItalic.ttf) format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+*/
