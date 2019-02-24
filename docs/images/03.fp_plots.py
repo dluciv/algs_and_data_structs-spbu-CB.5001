@@ -27,7 +27,7 @@ def plot_density():
     plt.xlabel('Значение')
     plt.legend([c, d], ['По идее', 'На самом деле'])
 
-    plt.savefig("fp-density.svg")
+    plt.savefig("03.fp-density.svg")
 
 def plot_deltas():
     xs = numpy.r_[1/100.0:20.0:1/100.0]
@@ -38,7 +38,27 @@ def plot_deltas():
     plt.xlabel('Значение')
     plt.legend([a, r], ['Δ', 'δ'])
 
-    plt.savefig("fp-deltas.svg")
+    plt.savefig("03.fp-deltas.svg")
+
+
+def plot_cplx_reim():
+    r = numpy.linspace(-1, 1, 61)
+    i = numpy.linspace(-1, 1, 61)
+    X, Y = numpy.meshgrid(r, i)
+
+    dv = numpy.array([min(abs(1/x/y),10.0) for x in r for y in i])
+    Z = dv.reshape(61, 61)
+
+    plt.pcolor(X, Y, Z)
+    plt.savefig("03.fp-compvec.svg")
+
+    plt.clf()
+
+    dp = numpy.array([min(1/(x**2 + y**2),10.0) for x in r for y in i])
+    Z = dp.reshape(61, 61)
+
+    plt.pcolor(X, Y, Z)
+    plt.savefig("03.fp-comppol.svg")
 
 
 if __name__ == '__main__':
@@ -46,3 +66,5 @@ if __name__ == '__main__':
     plot_density()
     plt.clf()
     plot_deltas()
+    plt.clf()
+    plot_cplx_reim()
