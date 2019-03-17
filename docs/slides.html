@@ -108,7 +108,7 @@ html.dimbg .slide-background {
 <p>Курс CS-103, программы 5001 и 5080, направления 02.03.01 и 09.03.04</p>
 <h1 id="__slides-title__">***</h1>
 <p><img src="media/images/SPbU_arms.svg" alt="" style="width: 400px;"></p>
-<h3 style="text-align: center;">Луцив Дмитрий Вадимович</h3>
+<h3 id="__slides-author__" style="text-align: center;">Луцив Дмитрий Вадимович</h3>
 <h3 style="text-align: center;">Кафедра системного программирования СПбГУ</h3>
 <!-- [PDF](?print-pdf) -->
 </section>
@@ -117,7 +117,7 @@ html.dimbg .slide-background {
 
 
 <!-- content -->
-<section id="__content__"
+<section id="__md_content__"
          data-markdown="***.md"
          data-separator="^\n= =[ =]+"
          data-separator-vertical="^\n- -[ -]+"
@@ -127,7 +127,7 @@ html.dimbg .slide-background {
 
 <script>
 var md = new URL(location.href).searchParams.get('md');
-document.getElementById('__content__').setAttribute('data-markdown', md)
+document.getElementById('__md_content__').setAttribute('data-markdown', md)
 </script>
 <!-- content -->
 
@@ -183,6 +183,14 @@ document.getElementById('__content__').setAttribute('data-markdown', md)
 		<script>
 			Reveal.addEventListener( 'ready', function(event) {
 				document.title = document.getElementById('__slides-title__').innerHTML = document.getElementById('slides-title').innerHTML
+				try {
+					document.title = document.getElementById('__slides-author__').innerHTML = document.getElementById('slides-author').innerHTML
+				} catch (e) {
+					// no authors --- ok, default
+				}
+
+				document.getElementById("__md_content__").outerHTML = document.getElementById("__md_content__").outerHTML.
+		                        replace(/-{pause}-/g, '<div class="fragment" />');
 			});
 		</script>
 	</body>
