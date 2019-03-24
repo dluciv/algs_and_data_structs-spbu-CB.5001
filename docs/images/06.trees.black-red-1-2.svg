@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created by diasvg.py -->
+<svg width="13.215cm" height="5.100cm" viewBox="3.950 0.950 17.165 6.050"
+ xmlns="http://www.w3.org/2000/svg"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+<ellipse cx="5.000" cy="2.000" rx="1.000" ry="1.000" fill="#FFFFFF" stroke="none"  /><ellipse cx="5.000" cy="2.000" rx="1.000" ry="1.000" fill="none" stroke="#000000"  stroke-width="0.100" /><line x1="5.000" y1="3.000" x2="5.000" y2="3.500" stroke="#000000" stroke-width="0.100" />
+<line x1="4.000" y1="3.500" x2="6.000" y2="3.500" stroke="#000000" stroke-width="0.100" />
+<line x1="4.335" y1="3.750" x2="5.665" y2="3.750" stroke="#000000" stroke-width="0.100" />
+<line x1="4.670" y1="4.000" x2="5.330" y2="4.000" stroke="#000000" stroke-width="0.100" />
+<ellipse cx="15.000" cy="2.000" rx="1.000" ry="1.000" fill="#FFFFFF" stroke="none"  /><ellipse cx="15.000" cy="2.000" rx="1.000" ry="1.000" fill="none" stroke="#000000"  stroke-width="0.100" /><ellipse cx="16.000" cy="4.000" rx="0.500" ry="0.500" fill="#FFFFFF" stroke="none"  /><ellipse cx="16.000" cy="4.000" rx="0.500" ry="0.500" fill="none" stroke="#FF0000"  stroke-width="0.100" /><line x1="15.500" y1="5.000" x2="15.500" y2="5.500" stroke="#000000" stroke-width="0.100" />
+<line x1="15.000" y1="5.500" x2="16.000" y2="5.500" stroke="#000000" stroke-width="0.100" />
+<line x1="15.168" y1="5.750" x2="15.832" y2="5.750" stroke="#000000" stroke-width="0.100" />
+<line x1="15.335" y1="6.000" x2="15.665" y2="6.000" stroke="#000000" stroke-width="0.100" />
+<line x1="16.582" y1="5.000" x2="16.582" y2="5.500" stroke="#000000" stroke-width="0.100" />
+<line x1="16.000" y1="5.500" x2="17.165" y2="5.500" stroke="#000000" stroke-width="0.100" />
+<line x1="16.195" y1="5.750" x2="16.970" y2="5.750" stroke="#000000" stroke-width="0.100" />
+<line x1="16.390" y1="6.000" x2="16.775" y2="6.000" stroke="#000000" stroke-width="0.100" />
+<line x1="15.707" y1="2.707" x2="16.000" y2="3.500" stroke="#000000" stroke-width="0.100" />
+<line x1="16.582" y1="5.000" x2="16.354" y2="4.354" stroke="#000000" stroke-width="0.100" />
+<line x1="15.500" y1="5.000" x2="15.646" y2="4.354" stroke="#000000" stroke-width="0.100" />
+</svg>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created by diasvg.py -->
+<svg width="15.889cm" height="8.681cm" viewBox="1.450 0.488 17.339 9.169"
+ xmlns="http://www.w3.org/2000/svg"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+<ellipse cx="3.581" cy="4.694" rx="1.000" ry="1.000" fill="#FFFFFF" stroke="none"  /><ellipse cx="3.581" cy="4.694" rx="1.000" ry="1.000" fill="none" stroke="#FF0000"  stroke-width="0.100" /><ellipse cx="2.400" cy="6.650" rx="0.500" ry="0.500" fill="#FFFFFF" stroke="none"  /><ellipse cx="2.400" cy="6.650" rx="0.500" ry="0.500" fill="none" stroke="#FF0000"  stroke-width="0.100" /><line x1="1.950" y1="8.050" x2="1.950" y2="8.550" stroke="#000000" stroke-width="0.100" />
+<line x1="1.450" y1="8.550" x2="2.450" y2="8.550" stroke="#000000" stroke-width="0.100" />
+<line x1="1.617" y1="8.800" x2="2.282" y2="8.800" stroke="#000000" stroke-width="0.100" />
+<line x1="1.785" y1="9.050" x2="2.115" y2="9.050" stroke="#000000" stroke-width="0.100" />
+<line x1="3.932" y1="8.050" x2="3.932" y2="8.550" stroke="#000000" stroke-width="0.100" />
+<line x1="3.350" y1="8.550" x2="4.515" y2="8.550" stroke="#000000" stroke-width="0.100" />
+<line x1="3.545" y1="8.800" x2="4.320" y2="8.800" stroke="#000000" stroke-width="0.100" />
+<line x1="3.740" y1="9.050" x2="4.125" y2="9.050" stroke="#000000" stroke-width="0.100" />
+<line x1="2.874" y1="5.401" x2="2.400" y2="6.150" stroke="#000000" stroke-width="0.100" />
+<line x1="3.933" y1="8.050" x2="2.754" y2="7.004" stroke="#000000" stroke-width="0.100" />
+<line x1="1.950" y1="8.050" x2="2.046" y2="7.004" stroke="#000000" stroke-width="0.100" />
+<ellipse cx="5.100" cy="1.950" rx="1.000" ry="1.000" fill="#FFFFFF" stroke="none"  /><ellipse cx="5.100" cy="1.950" rx="1.000" ry="1.000" fill="none" stroke="#000000"  stroke-width="0.100" /><polyline fill="none" stroke="#000000" stroke-width="0.100"  points="4.393,2.657 4.287,2.994 4.688,2.894 4.862,3.319 5.100,2.950 5.463,3.369 5.562,2.894 5.987,3.069 5.807,2.657 "/>
+<ellipse cx="7.162" cy="4.625" rx="1.000" ry="1.000" fill="#FFFFFF" stroke="none"  /><ellipse cx="7.162" cy="4.625" rx="1.000" ry="1.000" fill="none" stroke="#FF0000"  stroke-width="0.100" /><path stroke="#FF0000" fill="none" stroke-width="0.100"  d ="M 7.169,5.156 A 0.605,0.605 0 0,0 8.100,5.344 "/>
+<path stroke="#FF0000" fill="none" stroke-width="0.100"  d ="M 6.206,5.344 A 0.629,0.629 0 0,0 7.156,5.156 "/>
+<line x1="4.393" y1="2.657" x2="3.581" y2="3.694" stroke="#000000" stroke-width="0.100" />
+<line x1="5.807" y1="2.657" x2="7.162" y2="3.625" stroke="#000000" stroke-width="0.100" />
+<ellipse cx="12.708" cy="4.763" rx="1.000" ry="1.000" fill="#FFFFFF" stroke="none"  /><ellipse cx="12.708" cy="4.763" rx="1.000" ry="1.000" fill="none" stroke="#000000"  stroke-width="0.100" /><ellipse cx="11.526" cy="6.719" rx="0.500" ry="0.500" fill="#FFFFFF" stroke="none"  /><ellipse cx="11.526" cy="6.719" rx="0.500" ry="0.500" fill="none" stroke="#FF0000"  stroke-width="0.100" /><line x1="11.076" y1="8.119" x2="11.076" y2="8.619" stroke="#000000" stroke-width="0.100" />
+<line x1="10.576" y1="8.619" x2="11.576" y2="8.619" stroke="#000000" stroke-width="0.100" />
+<line x1="10.744" y1="8.869" x2="11.409" y2="8.869" stroke="#000000" stroke-width="0.100" />
+<line x1="10.911" y1="9.119" x2="11.241" y2="9.119" stroke="#000000" stroke-width="0.100" />
+<line x1="13.059" y1="8.119" x2="13.059" y2="8.619" stroke="#000000" stroke-width="0.100" />
+<line x1="12.476" y1="8.619" x2="13.641" y2="8.619" stroke="#000000" stroke-width="0.100" />
+<line x1="12.672" y1="8.869" x2="13.446" y2="8.869" stroke="#000000" stroke-width="0.100" />
+<line x1="12.867" y1="9.119" x2="13.251" y2="9.119" stroke="#000000" stroke-width="0.100" />
+<line x1="12.001" y1="5.470" x2="11.526" y2="6.219" stroke="#000000" stroke-width="0.100" />
+<line x1="13.059" y1="8.119" x2="11.880" y2="7.072" stroke="#000000" stroke-width="0.100" />
+<line x1="11.076" y1="8.119" x2="11.173" y2="7.072" stroke="#000000" stroke-width="0.100" />
+<ellipse cx="14.226" cy="2.019" rx="1.000" ry="1.000" fill="#FFFFFF" stroke="none"  /><ellipse cx="14.226" cy="2.019" rx="1.000" ry="1.000" fill="none" stroke="#FF0000"  stroke-width="0.100" /><polyline fill="none" stroke="#FF0000" stroke-width="0.100"  points="13.519,2.726 13.414,3.062 13.814,2.962 13.989,3.388 14.226,3.019 14.589,3.438 14.689,2.962 15.114,3.138 14.934,2.726 "/>
+<ellipse cx="16.289" cy="4.694" rx="1.000" ry="1.000" fill="#FFFFFF" stroke="none"  /><ellipse cx="16.289" cy="4.694" rx="1.000" ry="1.000" fill="none" stroke="#000000"  stroke-width="0.100" /><path stroke="#000000" fill="none" stroke-width="0.100"  d ="M 16.295,5.225 A 0.605,0.605 0 0,0 17.226,5.412 "/>
+<path stroke="#000000" fill="none" stroke-width="0.100"  d ="M 15.333,5.412 A 0.629,0.629 0 0,0 16.283,5.225 "/>
+<line x1="13.519" y1="2.726" x2="12.708" y2="3.763" stroke="#000000" stroke-width="0.100" />
+<line x1="14.934" y1="2.726" x2="16.289" y2="3.694" stroke="#000000" stroke-width="0.100" />
+<line x1="9.031" y1="3.094" x2="10.481" y2="3.094" stroke="#000099" stroke-width="0.100" />
+<polygon fill="#000099" stroke="none" stroke-width="0.100" points="10.481,3.344 10.981,3.094 10.481,2.844 "/>
+<polygon fill="none" stroke="#000099" stroke-width="0.100"  points="10.481,3.344 10.981,3.094 10.481,2.844 "/>
+<line x1="16.031" y1="2.294" x2="16.062" y2="1.149" stroke="#000099" stroke-width="0.100" />
+<polygon fill="#000099" stroke="none" stroke-width="0.100" points="16.312,1.156 16.075,0.650 15.812,1.143 "/>
+<polygon fill="none" stroke="#000099" stroke-width="0.100"  points="16.312,1.156 16.075,0.650 15.812,1.143 "/>
+</svg>
