@@ -182,13 +182,14 @@ document.getElementById('__md_content__').setAttribute('data-markdown', md)
 
 		<script>
 			Reveal.addEventListener( 'ready', function(event) {
-				document.title = document.getElementById('__slides-title__').innerHTML = document.getElementById('slides-title').innerHTML
+				document.getElementById('__slides-title__').innerHTML = document.getElementById('slides-title').innerHTML;
 				try {
-					document.title = document.getElementById('__slides-author__').innerHTML = document.getElementById('slides-author').innerHTML
+					document.getElementById('__slides-author__').innerHTML = document.getElementById('slides-author').innerHTML;
 				} catch (e) {
 					// no authors --- ok, default
 				}
 
+				document.title = document.getElementById('__slides-title__').innerHTML;
 				document.getElementById("__md_content__").outerHTML = document.getElementById("__md_content__").outerHTML.
 		                        replace(/-{pause}-/g, '<div class="fragment" />');
 			});
