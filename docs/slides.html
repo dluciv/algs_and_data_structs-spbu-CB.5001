@@ -127,7 +127,8 @@ html.dimbg .slide-background {
 
 <script>
 var md = new URL(location.href).searchParams.get('md');
-document.getElementById('__md_content__').setAttribute('data-markdown', md)
+var mc = document.getElementById("__md_content__");
+mc.setAttribute('data-markdown', md);
 </script>
 <!-- content -->
 
@@ -182,6 +183,11 @@ document.getElementById('__md_content__').setAttribute('data-markdown', md)
 
 		<script>
 			Reveal.addEventListener( 'ready', function(event) {
+				var mc = document.getElementById("__md_content__");
+				mc.outerHTML = mc.outerHTML.
+					replace(/@pause@/g, '<div class="fragment" />').
+					replace(/-{pause}-/g, '<div class="fragment" />');
+
 				document.getElementById('__slides-title__').innerHTML = document.getElementById('slides-title').innerHTML;
 				try {
 					document.getElementById('__slides-author__').innerHTML = document.getElementById('slides-author').innerHTML;
@@ -190,8 +196,6 @@ document.getElementById('__md_content__').setAttribute('data-markdown', md)
 				}
 
 				document.title = document.getElementById('__slides-title__').innerHTML;
-				document.getElementById("__md_content__").outerHTML = document.getElementById("__md_content__").outerHTML.
-		                        replace(/-{pause}-/g, '<div class="fragment" />');
 			});
 		</script>
 	</body>
