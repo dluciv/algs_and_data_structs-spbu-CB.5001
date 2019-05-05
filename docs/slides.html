@@ -183,10 +183,23 @@ mc.setAttribute('data-markdown', md);
 
 		<script>
 			Reveal.addEventListener( 'ready', function(event) {
-				var mc = document.getElementById("__md_content__");
-				mc.outerHTML = mc.outerHTML.
-					replace(/@pause@/g, '<div class="fragment" />').
-					replace(/-{pause}-/g, '<div class="fragment" />');
+				var mcs = document.querySelectorAll('section[data-markdown-parsed="true"]');
+				for(var mc of mcs) {
+					console.log(mc);
+					try {
+						// console.log("#######################################################");
+						// console.log(mc.outerHTML);
+
+						mc.outerHTML = mc.outerHTML.
+							replace(/@pause@/g, '<div class="fragment" />').
+							replace(/-{pause}-/g, '<div class="fragment" />');
+
+						// console.log("#######################################################");
+						// console.log(mc.outerHTML);
+					} catch (e) {
+						console.log("Caught: " + e);
+					}
+				}
 
 				document.getElementById('__slides-title__').innerHTML = document.getElementById('slides-title').innerHTML;
 				try {
