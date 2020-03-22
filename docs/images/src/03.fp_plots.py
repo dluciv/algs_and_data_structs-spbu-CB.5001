@@ -49,6 +49,7 @@ def plot_cplx_reim():
     dv = numpy.array([min(abs(1/x/y),10.0) for x in r for y in i])
     Z = dv.reshape(61, 61)
 
+    plt.gca().set_aspect('equal')
     plt.pcolor(X, Y, Z)
     plt.savefig("../03.fp-compvec.svg")
 
@@ -57,6 +58,7 @@ def plot_cplx_reim():
     dp = numpy.array([min(1/(x**2 + y**2),10.0) for x in r for y in i])
     Z = dp.reshape(61, 61)
 
+    plt.gca().set_aspect('equal')
     plt.pcolor(X, Y, Z)
     plt.savefig("../03.fp-comppol.svg")
 
