@@ -11,7 +11,7 @@ const size_t max_piece_size = 8192;
 const size_t std_piece_size = max_piece_size / 2;
 
 std::default_random_engine generator;
-std::uniform_int_distribution<size_t> piece_idx_distribution(0, pieces);
+std::uniform_int_distribution<size_t> piece_idx_distribution(0, pieces - 1);
 std::uniform_int_distribution<size_t> piece_size_distribution(1, max_piece_size);
 auto piece_dice = std::bind(piece_idx_distribution, generator);
 auto size_dice = std::bind(piece_size_distribution, generator);
