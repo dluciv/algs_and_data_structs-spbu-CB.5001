@@ -60,7 +60,7 @@ usec perform(bool random_size)
 
         total += t3 - t1;
     }
-    // cout << chrono::duration_cast<chrono::microseconds>(total).count() << endl;
+
     return total;
 }
 
