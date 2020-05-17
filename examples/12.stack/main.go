@@ -1,20 +1,25 @@
 package main
 
+// go get github.com/dterei/gotsc
+// go build main.go
+// or on UNIX go build -compiler gccgo -gccgoflags "-march=native -O3" main.go
+// main
+
 import (
 	"fmt"
-	"time"
+	"github.com/dterei/gotsc"
 )
 
 func bench(note string, testee func(int) int) {
-	iterations := 100_000_000
+	iterations := 100_000
 	acc := 0
-	s := time.Now()
+	o := gotsc.TSCOverhead()
+	s := gotsc.BenchStart()
 	for i := 0; i < iterations; i++ {
 		acc = testee(acc)
 	}
-	f := time.Now()
-	elapsed := f.Sub(s)
-	fmt.Printf("%s spent %f μs\n", note, (float64)(elapsed.Microseconds())/(float64)(iterations))
+	f := gotsc.BenchEnd()
+	fmt.Printf("%s spent %f cycles avg\n", note, (float64)(f - s - o)/(float64)(iterations))
 }
 
 // UpArg is used to store upwards funarg
