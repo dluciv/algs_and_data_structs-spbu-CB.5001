@@ -21,6 +21,7 @@
  		<link rel="stylesheet" href="./reveal.js/lib/css/zenburn.css" id="highlight-theme" />
 
 		<link rel="stylesheet" href="./media/fonts/OldStandard/oldstandard.css" />
+		<link rel="stylesheet" href="./media/fonts/Philosopher/philosopher.css" />
 		<link rel="stylesheet" href="./media/fonts/OpenSans/opensans.css" />
 
 		<!-- link rel="stylesheet" href="./media/fonts/Alegreya/alegreya.css" / -->
@@ -54,7 +55,7 @@
                                 }
 				
                                 .reveal {
-					font-family: OpenSans, sans-serif;
+					font-family: Philosopher, sans-serif;
 					/* font-family: OldStandard, 'Times New Roman', Times, serif; */
 					color: black; /* empover contrast over solarized */
 				}
@@ -193,7 +194,9 @@ mc.setAttribute('data-markdown', 'slides/' + md + '.md');
 
 						mc.outerHTML = mc.outerHTML.
 							replace(/@pause@/g, '<div class="fragment" />').
-							replace(/-{pause}-/g, '<div class="fragment" />');
+							replace(/-{pause}-/g, '<div class="fragment" />').
+							replace(/(\s)---(\s)/g, '$1&mdash;$2').
+							replace(/([\s0-9A-Za-z])--([\s0-9A-Za-z])/g, '$1&ndash;$2');
 
 						// console.log("#######################################################");
 						// console.log(mc.outerHTML);
