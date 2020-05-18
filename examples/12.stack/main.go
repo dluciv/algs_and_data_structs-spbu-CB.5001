@@ -19,7 +19,7 @@ func bench(note string, testee func(int) int) {
 		acc = testee(acc)
 	}
 	f := gotsc.BenchEnd()
-	fmt.Printf("%s spent %f cycles avg\n", note, (float64)(f - s - o)/(float64)(iterations))
+	fmt.Println("%s spent %f cycles avg", note, (float64)(f - s - o)/(float64)(iterations))
 }
 
 // UpArg is used to store upwards funarg
@@ -55,6 +55,11 @@ func fast(v int) int {
 
 func main() {
 	bench("fast", fast)
+	fmt.Println("not benchamrking fast / inner")
+
 	bench("slower", slower)
+	bench("slower / inner", UpArg)
+
 	bench("slowest", slowest)
+	bench("slowest / inner", UpArg)
 }

@@ -19,20 +19,16 @@ class StackContexts {
         );
     }
 
-    public static Func<int, int> UpArg = null;
+    public static Func<int, int> UpArg = (int x) => x;
 
     public static int Fast(int v){
         var z = v + 1;
-        Func<int, int> f = (int x) => {
-            return x + z;  // z is not modified
-        };
+        Func<int, int> f = (int x) => x + z;  // z is not modified
         return f(v);
     }
     public static int Slower(int v){
         var z = v + 1;
-        Func<int, int> f = (int x) => {
-            return x + z;  // z is not modified
-        };
+        Func<int, int> f = (int x) => x + z;  // z is not modified
         UpArg = f;
         return f(v);
     }
@@ -54,10 +50,14 @@ class StackContexts {
         Slow(0);
 
         // benchmark
-        Console.WriteLine("Press any key to benchmark");
-        Console.ReadKey();
+
         TimeIt("Fast", Fast);
+        Console.WriteLine("Not benchmarking Fast / Inner");
+
         TimeIt("Slower", Slower);
+        TimeIt("Slower / Inner", UpArg);
+
         TimeIt("Slow", Slow);
+        TimeIt("Slow / Inner", UpArg);
     }
 }
