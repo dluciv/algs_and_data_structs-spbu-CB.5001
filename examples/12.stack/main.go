@@ -19,7 +19,7 @@ func bench(note string, testee func(int) int) {
 		acc = testee(acc)
 	}
 	f := gotsc.BenchEnd()
-	fmt.Println("%s spent %f cycles avg", note, (float64)(f - s - o)/(float64)(iterations))
+	fmt.Printf("%s spent %f cycles avg\n", note, (float64)(f - s - o)/(float64)(iterations))
 }
 
 // UpArg is used to store upwards funarg
