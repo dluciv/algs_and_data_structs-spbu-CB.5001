@@ -40,7 +40,7 @@ func slower(v int) int {
 	f := func(x int) int {
 		return z + x
 	}
-	UpArg = f // requires copy of z
+	UpArg = f // requires copy of z; hopefully just a copy as z is never modified
 	return f(v)
 }
 

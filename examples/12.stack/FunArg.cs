@@ -1,6 +1,6 @@
 using System;
 
-class StackContexts {
+class FunArg {
 
     protected static void TimeIt(string note, Func<int, int> f){
         const long frequency = 10000000;  // 10 000 000 / sec, https://docs.microsoft.com/en-us/dotnet/api/system.datetime.ticks#remarks
