@@ -165,7 +165,10 @@ mc.setAttribute('data-markdown', 'slides/' + md + '.md');
 				transition: 'slide', // none/fade/slide/convex/concave/zoom
 				slideNumber: 'h.v',
 
-				plugins: [ RevealMarkdown, RevealHighlight, RevealZoom, RevealNotes, RevealMath ]
+				plugins: [ RevealMarkdown, RevealHighlight, RevealZoom, RevealNotes, RevealMath ],
+				markdown: {
+					smartypants: true
+				}
 			});
 
 		</script>
