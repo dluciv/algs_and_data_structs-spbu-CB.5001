@@ -13,12 +13,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 
-		<link rel="stylesheet" href="./reveal.js/css/reset.css">
-		<link rel="stylesheet" href="./reveal.js/css/reveal.css">
-		<link rel="stylesheet" href="./reveal.js/css/theme/solarized.css" id="theme">
+		<link rel="stylesheet" href="./reveal.js/dist/reset.css">
+		<link rel="stylesheet" href="./reveal.js/dist/reveal.css">
+		<link rel="stylesheet" href="./reveal.js/dist/theme/solarized.css" id="theme">
 
 		<!-- Theme used for syntax highlighting of code -->
- 		<link rel="stylesheet" href="./reveal.js/lib/css/zenburn.css" id="highlight-theme" />
+		<link rel="stylesheet" href="./reveal.js/plugin/highlight/zenburn.css" id="highlight-theme" />
 
 		<link rel="stylesheet" href="./media/fonts/OldStandard/oldstandard.css" />
 		<link rel="stylesheet" href="./media/fonts/Philosopher/philosopher.css" />
@@ -32,39 +32,31 @@
 				#chapter-foo p {
                                 	text-transform: uppercase;
 				}
-                                
 				.reveal h1 {
                                 	text-align: center;
 					font-size: 78px;
                                 }
-				
 				.reveal h2 {
                                 	text-align: center;
                                 	font-size: 64px;
 				}
-                                
 				.reveal h3 {
                                 	text-align: left;
 					font-size: 48px;
                                 }
-				
 				.reveal h1, .reveal h2, .reveal h3 {
 					font-weight: bold;
 					text-transform: none;
 					font-family: OpenSans, sans-serif;
                                 }
-				
                                 .reveal {
 					font-family: Philosopher, sans-serif;
 					/* font-family: OldStandard, 'Times New Roman', Times, serif; */
 					color: black; /* empover contrast over solarized */
 				}
-                                
 				.reveal .slides {
 					text-align: justify;
                                 }
-				
-                                
 				.reveal code {
 					font-family: Iosevka, monospace;
 					line-height: 1.0;
@@ -92,7 +84,7 @@ html.dimbg .slide-background {
 			var link = document.createElement( 'link' );
 			link.rel = 'stylesheet';
 			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? './reveal.js/css/print/pdf.css' : './reveal.js/css/print/paper.css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? './reveal.js/css/print/pdf.scss' : './reveal.js/css/print/paper.scss';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
 	</head>
@@ -107,14 +99,14 @@ html.dimbg .slide-background {
 
 <!-- title slide -->
 <section id="__md_title__"
-         data-markdown="***.md"
+         data-markdown="**TITLE**.md"
          data-charset="utf-8"
 ></section>
 
 
 <!-- content -->
 <section id="__md_content__"
-         data-markdown="***.md"
+         data-markdown="**CONTENT**.md"
          data-separator="^\n= =[ =]+"
          data-separator-vertical="^\n- -[ -]+"
          data-separator-notes="^\n--- note:"
@@ -148,8 +140,12 @@ mc.setAttribute('data-markdown', 'slides/' + md + '.md');
 
 		</div>
 
-		<!-- script src="./reveal.js/lib/js/head.min.js"></script -->
-		<script src="./reveal.js/js/reveal.js"></script>
+		<script src="./reveal.js/dist/reveal.js"></script>
+		<script src="./reveal.js/plugin/markdown/markdown.js"></script>
+		<script src="./reveal.js/plugin/highlight/highlight.js"></script>
+		<script src="./reveal.js/plugin/zoom/zoom.js"></script>
+		<script src="./reveal.js/plugin/notes/notes.js"></script>
+		<script src="./reveal.js/plugin/math/math.js"></script>
 
 		<script>
 
@@ -169,16 +165,7 @@ mc.setAttribute('data-markdown', 'slides/' + md + '.md');
 				transition: 'slide', // none/fade/slide/convex/concave/zoom
 				slideNumber: 'h.v',
 
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: './reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: './reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: './reveal.js/plugin/zoom-js/zoom.js', async: true },
-					{ src: './reveal.js/plugin/notes/notes.js', async: true },
-					{ src: './reveal.js/plugin/math/math.js', async: true }
-				]
+				plugins: [ RevealMarkdown, RevealHighlight, RevealZoom, RevealNotes, RevealMath ]
 			});
 
 		</script>
@@ -211,7 +198,6 @@ mc.setAttribute('data-markdown', 'slides/' + md + '.md');
 				} catch (e) {
 					// no authors --- ok, default
 				}
-
 				document.title = document.getElementById('__slides-title__').innerHTML;
 			});
 		</script>
