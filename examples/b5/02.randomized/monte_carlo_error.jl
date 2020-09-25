@@ -9,9 +9,9 @@ function analytic_V1(n)
     pi ^ (n/2) / SpecialFunctions.gamma(n/2 + 1)    
 end
 
-function mc_V1(n, iterations)
+function mc_K_N(n, iterations)
     k = zeros(Int, Threads.nthreads())
-    Threads.@threads for i = 1:iterations
+    Threads.@threads for _ = 1:iterations
         s = 0.0
         for d = 1:n
             s += rand()^2
@@ -19,7 +19,7 @@ function mc_V1(n, iterations)
         end
         if s <= 1.0 k[Threads.threadid()] += 1 end
     end
-    sum(k) / iterations * 2 ^ n
+    sum(k) / iterations
 end
 
 MCN = 1000000
@@ -27,7 +27,7 @@ MCN = 1000000
 function calc()
     for d = 1:10
         av = analytic_V1(d)
-        mv = mc_V1(d, MCN)
+        mv = mc_K_N(d, MCN)  * 2 ^ d
         Printf.@printf("D: %d,\tAN: %f,\tMC: %f,\tAE: %f,\tRE: %f\n",
             d, av, mv,
             abs(av-mv),
@@ -37,3 +37,26 @@ function calc()
 end
 
 @time(calc())
+println("======================")
+
+PN = 1000
+PEPS = 0.02
+PD = 3
+
+av1 = analytic_V1(PD) / 2 ^ PD
+
+function pmepsilon()
+    ge_epsilon = zeros(Int, Threads.nthreads())
+    Threads.@threads for _ = 1:PN
+        k = mc_K_N(PD, MCN)
+        if abs(av1 - k) >= PEPS
+            ge_epsilon[Threads.threadid()] += 1
+        end
+    end
+    return sum(ge_epsilon) / PN
+end
+
+pgeepsilon = @time(pmepsilon())
+rightside = av1 * (1.0 - av1) / (PN * PEPS^2 * 1.0)
+
+Printf.@printf("Left: %f, Right: %f", pgeepsilon, rightside)
