@@ -6,7 +6,7 @@ import SpecialFunctions
 Printf.@printf("%d threads\n", Threads.nthreads())
 
 function analytic_V1(n)
-    pi ^ (n/2) / SpecialFunctions.gamma(n/2 + 1)    
+    pi ^ (n/2) / SpecialFunctions.gamma(n/2 + 1)
 end
 
 function mc_K_N(n, iterations)
@@ -43,13 +43,13 @@ PN = 1000
 PEPS = 0.02
 PD = 3
 
-av1 = analytic_V1(PD) / 2 ^ PD
+av1q = analytic_V1(PD) / 2 ^ PD
 
 function pmepsilon()
     ge_epsilon = zeros(Int, Threads.nthreads())
     Threads.@threads for _ = 1:PN
-        k = mc_K_N(PD, MCN)
-        if abs(av1 - k) >= PEPS
+        kn = mc_K_N(PD, MCN)
+        if abs(av1q - kn) >= PEPS
             ge_epsilon[Threads.threadid()] += 1
         end
     end
@@ -57,6 +57,6 @@ function pmepsilon()
 end
 
 pgeepsilon = @time(pmepsilon())
-rightside = av1 * (1.0 - av1) / (PN * PEPS^2 * 1.0)
+rightside = av1q * (1.0 - av1q) / (PN * PEPS^2 * 1.0)
 
 Printf.@printf("Left: %f, Right: %f", pgeepsilon, rightside)
