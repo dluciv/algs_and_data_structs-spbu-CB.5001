@@ -13,7 +13,7 @@ function mc_K_N(n, iterations)
     k = zeros(Int, Threads.nthreads())
     Threads.@threads for _ = 1:iterations
         s = 0.0
-        for d = 1:n
+        for _ = 1:n
             s += rand()^2
             if s > 1.0 break end
         end
@@ -40,7 +40,7 @@ end
 println("======================")
 
 PN = 1000
-PEPS = 0.02
+PEPS = 0.001
 PD = 3
 
 av1q = analytic_V1(PD) / 2 ^ PD
@@ -56,7 +56,7 @@ function pmepsilon()
     return sum(ge_epsilon) / PN
 end
 
-pgeepsilon = @time(pmepsilon())
+leftside = @time(pmepsilon())
 rightside = av1q * (1.0 - av1q) / (PN * PEPS^2 * 1.0)
 
-Printf.@printf("Left: %f, Right: %f", pgeepsilon, rightside)
+Printf.@printf("Left: %f, Right: %f", leftside, rightside)
