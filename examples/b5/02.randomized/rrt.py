@@ -146,8 +146,8 @@ class Graph:
         rx = random()
         ry = random()
 
-        posx = self.startpos[0] + self.sx * (rx * 2 - 1/2)
-        posy = self.startpos[1] + self.sy * (ry * 2 - 1/2)
+        posx = self.startpos[0] + self.sx * (rx * 2 - 1)
+        posy = self.startpos[1] + self.sy * (ry * 2 - 1)
         return posx, posy
 
 
@@ -315,8 +315,8 @@ if __name__ == '__main__':
     radius = 0.5
     stepSize = 0.7
 
-    G = RRT_star(startpos, endpos, obstacles, n_iter, radius, stepSize)
-    # G = RRT(startpos, endpos, obstacles, n_iter, radius, stepSize)
+    # G = RRT_star(startpos, endpos, obstacles, n_iter, radius, stepSize)
+    G = RRT(startpos, endpos, obstacles, n_iter, radius, stepSize)
 
     if G.success:
         path = dijkstra(G)
