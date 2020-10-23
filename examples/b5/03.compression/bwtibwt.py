@@ -2,8 +2,8 @@
 
 # https://en.wikipedia.org/wiki/Burrows%E2%80%93Wheeler_transform#Sample_implementation
 
-STX = "{"
-ETX = "}"
+STX = "␂"
+ETX = "␃"
 
 def bwt(s: str) -> str:
     """Apply Burrows–Wheeler transform to input string."""

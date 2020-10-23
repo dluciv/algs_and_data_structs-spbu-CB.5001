@@ -37,16 +37,6 @@ def lzw_decompress(inp: Iterable[int])-> bytes:
     result = b''
     d = asciipuls.copy()
 
-    # https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch#Decoding
-    # To rebuild the dictionary in the same way as it was built during encoding,
-    # it also obtains the next value from the input and adds to the dictionary
-    # 
-    # the concatenation of the current string and the first character of the string
-    # obtained by decoding the next input value,
-    # or
-    # the first character of the string just output if the next value can not be decoded
-
-    # for i, ii in zip(inp, inp[1:] + [256]):
     for i, i_ in zip(inp, inp[1:] + [256]):
         s = d[i]
         result += s
