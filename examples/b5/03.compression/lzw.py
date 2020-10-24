@@ -48,8 +48,7 @@ def lzw_decompress(inp: Iterable[int])-> bytes:
             s1_ = s[:1]
         d.append(s + s1_)
 
-        # print(result, d[256:])
-
+    print(result, d[256:])
     return result
 
 b = "Однажны в студёную зимнюю пору сижу за решёткой в темнице сырой".encode('utf-8')
