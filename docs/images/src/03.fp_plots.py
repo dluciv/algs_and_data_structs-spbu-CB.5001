@@ -41,7 +41,7 @@ def plot_density():
     plt.savefig("../03.fp-density.svg")
 
 def plot_deltas():
-    xs = numpy.r_[1/8.0:10.0:1/100.0]
+    xs = numpy.r_[1/8.0:8.02:1/100.0]
 
     ax = plt.axes()
 
@@ -54,8 +54,10 @@ def plot_deltas():
    
     ax.grid(which='major')
 
-    a, = plt.plot(xs, list(map(deltaa, xs)))
-    r, = plt.plot(xs, list(map(deltar, xs)))
+    plt.fill_between([0, 8], [0, deltaa(8)], [0, deltaa(8)*2], color='blue', alpha=0.25)
+    plt.fill_between([0, 8], [2**-25] * 2, [2**-24] * 2, color='red', alpha=0.25)
+    a, = plt.plot(xs, list(map(deltaa, xs)), color='blue')
+    r, = plt.plot(xs, list(map(deltar, xs)), color='red')
 
     plt.ylabel('Погрешности')
     plt.xlabel('Значение')
