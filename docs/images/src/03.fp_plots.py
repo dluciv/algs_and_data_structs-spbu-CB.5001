@@ -12,29 +12,52 @@ def density(x):
     return 2.0 ** -(-math.floor(-math.log(x)/math.log(2.0))) * densconst
 
 def deltaa(x):
-    return 1.0/2.0/density(x)
+    return 1.0/2.0/density(x) / 2.0
 
 def deltar(x):
     return deltaa(x) / x
 
 
 def plot_density():
-    xs = numpy.r_[1/10.0:10.0:1/100.0]
+    xs = numpy.r_[1/8.0:10.0:1/100.0]
 
     c, = plt.plot(xs, list(map(lambda x: densconst/x, xs)))
     d, = plt.plot(xs, list(map(density, xs)))
 
+    xt = [0, 1/8, 1/4, 1/2, 1, 2, 4, 8]
+    plt.xticks(xt, ['0', '', '', '$\\frac{1}{2}$', '1', '2', '4', '8'])
+    xty = xt[1:5]
+    plt.yticks(
+        [0] + [density(n + 1/8) for n in xty],
+        ['0'] + [f"$2^{{{round(math.log2(density(n)))}}}$" for n in xty]
+    )
+
+    plt.ylabel('Плотность')
     plt.xlabel('Значение')
     plt.legend([c, d], ['По идее', 'На самом деле'])
+
+    plt.grid(which='major')
 
     plt.savefig("../03.fp-density.svg")
 
 def plot_deltas():
-    xs = numpy.r_[1/100.0:20.0:1/100.0]
+    xs = numpy.r_[1/8.0:10.0:1/100.0]
+
+    ax = plt.axes()
+
+    xt = [0, 1/8, 1/4, 1/2, 1, 2, 4, 8]
+    plt.xticks(xt, ['0', '', '', '$\\frac{1}{2}$', '1', '2', '4', '8'])
+
+    ytl = [f"$2^{{{n}}}$" for n in range(-24, -20)]
+    ytl[0] = "$\\frac{\\varepsilon}{2}$ = " + ytl[0]
+    plt.yticks([0] + [2**n for n in range(-24, -20)], ['0'] + ytl, rotation=60)
+   
+    ax.grid(which='major')
 
     a, = plt.plot(xs, list(map(deltaa, xs)))
     r, = plt.plot(xs, list(map(deltar, xs)))
 
+    plt.ylabel('Погрешности')
     plt.xlabel('Значение')
     plt.legend([a, r], ['Δ', 'δ'])
 
