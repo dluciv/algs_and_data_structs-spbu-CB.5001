@@ -16,27 +16,26 @@ hash_num_db.open(hash_file_name)
 tree_num_db.open(tree_file_name)
 
 
-def test_hash(print_every = 1000000):
-    for n in range(test_start, test_start + test_size):
-        key = n.to_bytes(4, byteorder='big')
+rkeys = [ n.to_bytes(4, byteorder='big') for n in range(test_start, test_start + test_size) ]
+
+def test_hash(do_print = False):
+    for n, key in zip(range(test_size), rkeys):
         value = hash_num_db.get(key)
-        if n % print_every == 0:
+        if do_print and n % 100 == 0:
             print(value.decode('UTF-8'))
 
 
-def test_tree(print_every = 1000000):
-    start_key = test_start.to_bytes(4, byteorder='big')
+def test_tree(do_print = False):
     cursor = tree_num_db.cursor()
-
-    cursor.set(start_key)  # ещё бывает set_range — можно отступить назад
+    cursor.set(rkeys[0])  # ещё бывает set_range — можно отступить назад
     value = cursor.current()[1]
     for n in range(test_start, test_start + test_size):
-        if n % print_every == 0:
+        if do_print and n % 100 == 0:
             print(value.decode('UTF-8'))
         value = cursor.next()[1]
 
-test_hash(print_every = 100)
-test_tree(print_every = 100)
+test_hash(True)
+test_tree(True)
 
 print(timeit(test_hash, number=1000))
 print(timeit(test_tree, number=1000))
