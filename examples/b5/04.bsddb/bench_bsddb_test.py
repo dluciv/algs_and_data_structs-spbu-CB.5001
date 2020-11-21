@@ -16,13 +16,15 @@ hash_num_db.open(hash_file_name)
 tree_num_db.open(tree_file_name)
 
 
-rkeys = [ n.to_bytes(4, byteorder='big') for n in range(test_start, test_start + test_size) ]
+rkeys = [n.to_bytes(4, byteorder='big') for n in range(test_start, test_start + test_size)]
 
 def test_hash(do_print = False):
-    for n, key in zip(range(test_size), rkeys):
+    n = 0
+    for key in rkeys:
         value = hash_num_db.get(key)
         if do_print and n % 100 == 0:
             print(value.decode('UTF-8'))
+        n += 1
 
 
 def test_tree(do_print = False):
