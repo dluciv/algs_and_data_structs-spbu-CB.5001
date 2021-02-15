@@ -1,8 +1,10 @@
+#!/usr/bin/env python3
+
 from numba import jit, prange
 import random
 import timeit
 
-@jit(nopython=True)
+@jit(nopython=True, parallel=True)
 def monte_carlo_pi(nsamples = 1_000_000):
     acc = 0
     for i in prange(4):
