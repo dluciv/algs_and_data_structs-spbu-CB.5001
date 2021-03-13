@@ -2,8 +2,8 @@
 
 import timeit
 import itertools
-from ffate import Fate as Fate1
-from ffate2 import Fate as Fate2
+from fate import Fate as Fate1
+from ffate import Fate as Fate2
 
 def load1():
     x = 0
@@ -14,8 +14,8 @@ def load1():
 def load2():
     x = 0
     f = Fate2()
-    for r in range(1_000_000):
-        x = (x + f.get_next()) % 2**60
+    for r in itertools.islice(Fate2(), 1_000_000):
+        x = (x + r) % 2**60
     return x
 
 print(load1(), load2())
