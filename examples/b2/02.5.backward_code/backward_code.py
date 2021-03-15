@@ -15,9 +15,9 @@ class OneComp: # (Integral): # Tooo many to implement
             self.v: uint8 = i.v
         else:
             if i >= 0:
-                self.v: uint8 = uint8(v)
+                self.v: uint8 = uint8(i)
             else:
-                self.v: uint8 = (-v) ^ 0b11111111
+                self.v: uint8 = (-i) ^ 0b11111111
 
     def __eq__(self, o):
         return self.v == o.v
