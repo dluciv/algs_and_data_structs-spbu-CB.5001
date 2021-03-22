@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
 # https://github.com/python/cpython/blob/9a50ef43e42ee32450a81ce13ed5a0729d3b84e8/Objects/longobject.c#L23
+
 # http://www.laurentluce.com/posts/python-integer-objects-implementation/
+# https://habr.com/ru/company/domclick/blog/525994/
 
 def check2(l0, l1):
     for e0, e1 in zip(l0, l1):

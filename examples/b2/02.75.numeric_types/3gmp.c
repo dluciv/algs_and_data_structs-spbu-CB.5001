@@ -35,7 +35,7 @@ int main(void)
   mpz_t v;
   mpz_init_set_ui(v, 1);
 
-  for(int i = 0; i < 20; i++)
+  for(int i = 0; i < 40; i++)
   {
       mpz_mul_ui(v, v, 65536);
       gmp_printf ("%ZX\t", v);
