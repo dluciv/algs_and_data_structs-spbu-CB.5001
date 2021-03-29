@@ -21,11 +21,13 @@ function measure_v(w)
     end
 end
 
-
-v = BigInt(1)
-for i in 1:40
-    global v
+function go()
+  v = big(1)
+  for i in 1:40
     v *= 65536
     print(v)
     measure_v(v)
+  end
 end
+
+go()
