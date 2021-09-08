@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from PyMimircache import Cachecow
 c = Cachecow()
 c.vscsi("trace.vscsi")      # this file is in the data folder on GitHub, other data types also supported
