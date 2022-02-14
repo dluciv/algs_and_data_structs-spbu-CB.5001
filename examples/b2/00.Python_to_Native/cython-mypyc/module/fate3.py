@@ -8,7 +8,7 @@ class Fate:
         self.r: int = seed
 
     def __next__(self):
-        self.r = (self.r * self.a + self.b) % self.c
+        self.r: int = (self.r * self.a + self.b) % self.c
         return self.r
 
     def __iter__(self):
