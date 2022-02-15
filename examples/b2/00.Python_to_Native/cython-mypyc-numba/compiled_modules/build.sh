@@ -1,5 +1,5 @@
 #!/bin/bash
 
 ./setup.py build_ext --inplace
-mypyc fate3.py
+mypyc mypy_python.py
 mv *.so ..

@@ -2,11 +2,11 @@
 
 import timeit
 import itertools
-from fate0 import Fate as Fate0
-from fate1 import Fate as Fate1
-from fate2 import Fate as Fate2
-from fate3 import Fate as Fate3
-from fate4 import Fate as Fate4
+from pure_python import Fate as Fate0
+from pure_cython import Fate as Fate1
+from pyx_cython  import Fate as Fate2
+from mypy_python import Fate as Fate3
+from numba_jit   import Fate as Fate4
 
 def load(fate_class):
     f = fate_class()
