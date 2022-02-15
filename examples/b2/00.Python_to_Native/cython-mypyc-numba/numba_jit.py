@@ -14,6 +14,6 @@ class Fate:
         self.c = 2_147_483_647  # Mersenne prive, found by Euler
         self.r = seed
 
-    def get_next(self):
+    def get_next(self)->int64:
         self.r = (self.r * self.a + self.b) % self.c
         return self.r

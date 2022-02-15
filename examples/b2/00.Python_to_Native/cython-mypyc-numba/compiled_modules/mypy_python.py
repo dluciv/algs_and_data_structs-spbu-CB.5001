@@ -7,6 +7,6 @@ class Fate:
         self.c: int = 2_147_483_647
         self.r: int = seed
 
-    def get_next(self):
-        self.r: int = (self.r * self.a + self.b) % self.c
+    def get_next(self)->int:
+        self.r = (self.r * self.a + self.b) % self.c
         return self.r
