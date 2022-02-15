@@ -1,5 +1,5 @@
 cdef class Fate:
-    cdef int a, b, c, r
+    cdef long a, b, c, r
 
     def __init__(self, int seed = 1234567):
         self.a = 524_287
