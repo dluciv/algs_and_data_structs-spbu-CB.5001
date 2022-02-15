@@ -12,4 +12,3 @@ setup(
   name = 'Fate2',
   ext_modules = cythonize("fate2.pyx")
 )
-

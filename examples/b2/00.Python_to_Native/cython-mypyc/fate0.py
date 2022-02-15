@@ -6,9 +6,6 @@ class Fate:
     def __init__(self, seed: int = 1234567):
         self.r = seed
 
-    def __next__(self):
+    def get_next(self):
         self.r = (self.r * Fate.a + Fate.b) % Fate.c
         return self.r
-
-    def __iter__(self):
-        return self
