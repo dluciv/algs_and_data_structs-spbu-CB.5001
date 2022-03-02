@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import timeit
-import itertools
+
 from pure_python import Fate as Fate0
 from pure_cython import Fate as Fate1
 from pyx_cython  import Fate as Fate2

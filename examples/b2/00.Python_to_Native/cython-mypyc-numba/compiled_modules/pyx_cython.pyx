@@ -1,5 +1,5 @@
 cdef class Fate:
-    cdef long a, b, c, r  # int is not enough, it is 32 bit
+    cdef long long a, b, c, r  # int is not enough, it is 32 bit
 
     def __init__(self, int seed = 1234567):
         self.a = 524_287
