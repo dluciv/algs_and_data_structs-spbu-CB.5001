@@ -18,13 +18,14 @@ class FoolTest(unittest.TestCase):
     def test_binops(self):
         v1_ = self.f1 & self.f2
         v2_ = self.f1 | self.f2
+
         self.assertTrue(v2_)
         self.assertEqual(v1_, Fool.UNLIKELY)
     
     def test_unops(self):
-        self.assertFalse((~self.f1).bool)
+        self.assertFalse(~self.f1)
         self.assertGreater(~self.f2, Fool.UNKNOWN)
-        self.assertRaises(RuntimeError, lambda: self.f2.bool)
+        self.assertRaises(RuntimeError, lambda: bool(self.f2))
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,9 +1,29 @@
 from __future__ import annotations
-from typing import Union
 from numbers import Real
 
+def class_init(cls):
+    """
+    Class init decorator, inspired by  https://stackoverflow.com/a/60748729
+    """
+    if getattr(cls, "__class_init__", None):
+        cls.__class_init__()
+    return cls
+
+@class_init
 class Fool:  # (bool)
-    def __init__(self, val: Union[bool, Fool, Real]):
+
+    @classmethod
+    def __class_init__(cls):
+        """
+        Typecheckers will not likely find below values
+        """
+        cls.TRUE:     cls = cls(True)
+        cls.FALSE:    cls = cls(False)
+        cls.UNKNOWN:  cls = cls(0.0)
+        cls.LIKELY:   cls = cls(0.5)
+        cls.UNLIKELY: cls = cls(-0.5)
+
+    def __init__(self, val: bool | Fool | Real):
         if isinstance(val, bool):
             self._v: Real = 1.0 if val else -1.0
         elif isinstance(val, Real):
@@ -13,8 +33,7 @@ class Fool:  # (bool)
         else:
             raise ValueError(f"Expected {help(val)}, got {type(val)}")
 
-    @property
-    def bool(self):
+    def __bool__(self):
         if self._v == -1.0:
             return False
         elif self._v == 1.0:
@@ -28,28 +47,31 @@ class Fool:  # (bool)
     def __hash__(self):
         return hash(self._v)
 
-    def __eq__(self, other: Union[bool, Fool]):
+    def __eq__(self, other: bool | Fool):
         return self._v == Fool(other)._v
     
-    def __lt__(self, other: Union[bool, Fool]):
+    def __lt__(self, other: bool | Fool):
         return self._v < Fool(other)._v
     
-    def __le__(self, other: Union[bool, Fool]):
+    def __le__(self, other: bool | Fool):
         return self._v <= Fool(other)._v
 
-    def __gt__(self, other: Union[bool, Fool]):
+    def __gt__(self, other: bool | Fool):
         return self._v > Fool(other)._v
     
-    def __ge__(self, other: Union[bool, Fool]):
+    def __ge__(self, other: bool | Fool):
         return self._v >= Fool(other)._v
 
-    def __invert__(self):
+    def __neg__(self):
         return Fool(- self._v)
     
-    def __or__(self, other: Union[bool, Fool]):
+    def __invert__(self):
+        return Fool(- self._v)        
+    
+    def __or__(self, other: bool | Fool):
         return Fool(max(self._v, Fool(other)._v))
 
-    def __and__(self, other: Union[bool, Fool]):
+    def __and__(self, other: bool | Fool):
         return Fool(min(self._v, Fool(other)._v))
     
     def __repr__(self):
@@ -60,13 +82,6 @@ class Fool:  # (bool)
             return str(bool(self))
         else:
             return repr(self)
-
-# Not doing this in method to help typecheckers
-Fool.TRUE:      Fool = Fool(True)
-Fool.FALSE:     Fool = Fool(False)
-Fool.UNKNOWN:   Fool = Fool(0.0)
-Fool.LIKELY:    Fool = Fool(0.5)
-Fool.UNLIKELY:  Fool = Fool(-0.5)
 
 if __name__=='__main__':
     raise RuntimeError("This module is not supposed to be launched")
