@@ -3,6 +3,8 @@
 #include <chrono>
 #include <memory>
 
+// g++-11 --std=c++20 -Ofast -march=native funarg.cc
+
 using namespace std;
 
 typedef chrono::duration<double, std::micro> usec;
