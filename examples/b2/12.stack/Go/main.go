@@ -1,6 +1,6 @@
 package main
 
-// go get funargtest
+// go get
 // go build
 // or on UNIX go build -compiler gccgo -gccgoflags "-march=native -O3"
 // ./funargtest
