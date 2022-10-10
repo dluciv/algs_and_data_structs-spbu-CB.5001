@@ -92,7 +92,16 @@ function fpprimem(n; iterations = 10, only_consider_coprimes=false)
 end
 
 # ╔═╡ cf8e8dd2-2ac6-4ede-8e85-9686a2a316da
-@bind fpprimemmode Radio(["software" => "🧑🏻‍💻", "hardware" => "🖥️"], default="hardware")
+@bind fpprimemmode Radio(["software" => "Software long integers", "hardware" => "Hardware integers"], default="hardware")
+
+# ╔═╡ 096c3609-4e24-4a8d-9f24-da640f86fc8f
+begin
+	print("Только взаимно простые n и a")
+	@bind only_coprimes CheckBox()
+end
+
+# ╔═╡ ffcd757f-5c8c-4abd-9247-5c4d6b3e0fa8
+@bind fermat_iterations NumberField(5:100, default=if only_coprimes 25 else 10 end)
 
 # ╔═╡ 3fce9229-ab56-40b2-8d8a-347c4bd5f5ac
 begin
@@ -105,7 +114,7 @@ end
 
 # ╔═╡ d21b75ab-922f-4467-934a-abc75a994c15
 @progress for n = 3:3000000
-	if fpf(n) != Primes.isprime(n)
+	if fpf(n, iterations=fermat_iterations, only_consider_coprimes=only_coprimes) != Primes.isprime(n)
 		println("Fail on $(n)")
 	end
 end;
@@ -156,9 +165,19 @@ end
     end
 end;
 
+# ╔═╡ ebdd9dfb-c133-42c0-ae5a-68c1b44c79ea
+@bind strassenCharmichael Radio(["charmichael" => "Только числа Кармайкла", "random" => "Произвольные числа"], default="random")
+
+# ╔═╡ 40936f93-7f36-46a8-b256-79712c9caf3b
+strassen_test = if strassenCharmichael == "charmichael"
+	first_сarmichael_numbers
+else
+	rand(3:76000, length(first_сarmichael_numbers))
+end
+
 # ╔═╡ e1208101-cae5-4250-b0f4-2b6539450491
-@progress for _ in 1:10000
-    for n in first_сarmichael_numbers
+@progress for _ in 1:100000
+    for n in strassen_test
         if sstprimem(n)
             println("Тест Соловея-Штрассена ошибся на $(n)!!!")
         end
@@ -189,7 +208,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.8.2"
 manifest_format = "2.0"
-project_hash = "cc559f748061cae204d248fe3f77fc0804068b7a"
+project_hash = "e61d0f8b3938f6298c8a4f0232bfa4b9dc67e5a3"
 
 [[deps.AbstractPlutoDingetjes]]
 deps = ["Pkg"]
@@ -448,16 +467,20 @@ version = "17.4.0+0"
 # ╔═╡ Cell order:
 # ╟─a4d49bda-47f9-11ed-2630-93e53521cf7b
 # ╟─496ae66b-6082-4ef2-a132-b616aa45b613
-# ╟─41c8044f-b08a-4952-9fe6-5bf8b7fe0d56
-# ╟─acd839bb-1be8-4834-894f-fa36f36fc366
-# ╟─cf8e8dd2-2ac6-4ede-8e85-9686a2a316da
-# ╟─3fce9229-ab56-40b2-8d8a-347c4bd5f5ac
-# ╟─d21b75ab-922f-4467-934a-abc75a994c15
+# ╠═41c8044f-b08a-4952-9fe6-5bf8b7fe0d56
+# ╠═acd839bb-1be8-4834-894f-fa36f36fc366
+# ╠═cf8e8dd2-2ac6-4ede-8e85-9686a2a316da
+# ╠═096c3609-4e24-4a8d-9f24-da640f86fc8f
+# ╠═ffcd757f-5c8c-4abd-9247-5c4d6b3e0fa8
+# ╠═3fce9229-ab56-40b2-8d8a-347c4bd5f5ac
+# ╠═d21b75ab-922f-4467-934a-abc75a994c15
 # ╟─34d14494-83d4-4c6e-afb0-a289123060b5
 # ╟─e596a53e-ad98-4778-8800-28de305440dd
 # ╟─f8a7c173-0897-497e-902e-d0c0f60d4912
-# ╟─fabcf136-3369-4e95-bc95-8a2be531aa5a
+# ╠═fabcf136-3369-4e95-bc95-8a2be531aa5a
 # ╠═6f7524c8-8636-45fd-82ac-43add155d81a
+# ╠═ebdd9dfb-c133-42c0-ae5a-68c1b44c79ea
+# ╠═40936f93-7f36-46a8-b256-79712c9caf3b
 # ╠═e1208101-cae5-4250-b0f4-2b6539450491
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
