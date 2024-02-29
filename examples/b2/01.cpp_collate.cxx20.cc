@@ -4,24 +4,29 @@
 #include <string>
 #include <vector>
 
+using namespace std::string_literals; // enables s-suffix for std::string literals
+
 int main()
 {
   auto locale_names = { "ru_RU.UTF8", "en_US.UTF8", "fr_FR.UTF8", "fr_CA.UTF8" };
-  // auto strings = std::vector{ u8"coté"s, u8"côte"s, u8"ё"s, u8"и"s, u8"й"s, u8"ґ"s, u8"і"s, u8"ї"s, u8"i"s, u8"я"s };
   auto strings = std::vector{
-    std::wstring(L"coté"),
-    std::wstring(L"côte"),
-    std::wstring(L"ё"),
-    std::wstring(L"и"),
-    std::wstring(L"й"),
-    std::wstring(L"ґ"),
-    std::wstring(L"і"),
-    std::wstring(L"ї"),
-    std::wstring(L"i"),
-    std::wstring(L"я")
+    L"coté"s,
+    L"côte"s,
+    L"а"s,
+    L"\"а\""s,
+    L"ё"s,
+    L"и"s,
+    L"й"s,
+    L"ґ"s,
+    L"і"s,
+    L"ї"s,
+    L"i"s,
+    L"ю"s,
+    L"\"ю\""s,
+    L"я"s
   };
 
-  std::locale::global(std::locale("en_US.UTF8"));
+  std::locale::global(std::locale(""));
   std::wcout.imbue(std::locale(""));
 
   for(auto ln: locale_names)
