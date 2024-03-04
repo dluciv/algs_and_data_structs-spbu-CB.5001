@@ -26,9 +26,6 @@ int main()
     u8"я"s
   };
 
-  std::locale::global(std::locale(""));
-  std::wcout.imbue(std::locale(""));
-
   for(auto ln: locale_names)
   {
     std::locale l(ln);
@@ -38,6 +35,8 @@ int main()
     auto plain_strings = reinterpret_cast<std::vector<std::string> &>(strings);
 
     std::sort(plain_strings.begin(), plain_strings.end(), l);
+
+    std::cout << ln << '\t';
     for(auto s: plain_strings)
     {
       std::cout << s << ' ';

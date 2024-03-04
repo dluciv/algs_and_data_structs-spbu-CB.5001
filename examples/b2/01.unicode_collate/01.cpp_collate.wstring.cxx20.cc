@@ -3,6 +3,7 @@
 #include <locale>
 #include <string>
 #include <vector>
+#include <codecvt>
 
 using namespace std::string_literals; // enables s-suffix for std::string literals
 
@@ -33,11 +34,14 @@ int main()
   {
     std::locale l(ln);
     std::sort(strings.begin(), strings.end(), l);
+
+    std::wcout << std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>>().from_bytes(ln) << L'\t';
+
     for(auto s: strings)
     {
       std::wcout << s << L" ";
     }
-    std::wcout << "\n";
+    std::wcout << L"\n";
   }
   return 0;
 }
