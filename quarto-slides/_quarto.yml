@@ -1,6 +1,7 @@
 project:
   title: "Алгоритмы и структуры данных"
   type: website
+  output-dir: ../docs/quarto
   # type: default # на делает слайдов с названиями секций
   resources:
     - resources/fonts
