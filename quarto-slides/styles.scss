@@ -1,0 +1,65 @@
+/*-- scss:rules --*/
+
+@import "../../../../resources/fonts/Philosopher/philosopher.css";
+@import "../../../../resources/fonts/OpenSans/opensans.css";
+@import "../../../../resources/fonts/Iosevka/iosevka.css";
+
+          .reveal h1 {
+            text-align: center;
+            font-size: 48px;
+          }
+
+          .reveal h2 {
+            text-align: center;
+            font-size: 40px;
+          }
+
+          .reveal h3 {
+            text-align: left;
+            font-size: 32px;
+          }
+
+          .reveal h1,
+          .reveal h2,
+          .reveal h3 {
+            font-weight: bold;
+            text-transform: none;
+            font-family: OpenSans, sans-serif;
+          }
+
+          .reveal {
+            font-family: Philosopher, sans-serif;
+            font-size: 24px;
+            /* font-family: OldStandard, 'Times New Roman', Times, serif; */
+            color: black;
+            /* empover contrast over solarized */
+          }
+
+          .reveal .slides {
+            text-align: justify;
+          }
+
+          .reveal code {
+            font-family: Iosevka, monospace;
+            line-height: 1;
+            font-weight: medium;
+            font-size: 24px;
+          }
+
+          .reveal pre code {
+            max-height: 1000px;
+          }
+
+          .reveal section img {
+            border: none;
+            box-shadow: none;
+          }
+
+          .reveal .footer {
+            color: black;
+          }
+
+          .reveal .wctr {
+            color: white;
+            text-shadow: black 0 0 8px;
+          }
