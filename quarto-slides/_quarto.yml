@@ -9,6 +9,7 @@ project:
 
 format:
   beamer:
+    keep-tex: true
     toc: true
     incremental: false
     pdf-engine: tectonic
@@ -19,8 +20,6 @@ format:
     urlcolor: red
     center-title-slide: true
     number-sections: false
-    # Но надо что-то делать c этим Section...
-    section-titles: true
     mainfont: Cuprum
     monofont: Iosevka Term
     # classoption: "aspectratio=169"
@@ -30,8 +29,10 @@ format:
     # innertheme: default
     # outertheme: default
     colortheme: beaver
-    keep-tex: true
-  
+    # Но надо что-то делать c этим Section...
+    section-titles: true
+    template: resources/templates/beamer.template
+
   revealjs:
     # footer: "CS-103 Алгоритмы и структуры данных"
     shift-heading-level-by: 0
