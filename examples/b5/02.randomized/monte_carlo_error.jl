@@ -39,7 +39,7 @@ end
 @time(calc())
 println("======================")
 
-PN = 1000
+PN = 10000
 PEPS = 0.001
 PD = 3
 
@@ -57,6 +57,6 @@ function pmepsilon()
 end
 
 leftside = @time(pmepsilon())
-rightside = av1q * (1.0 - av1q) / (PN * PEPS^2 * 1.0)
+rightside = av1q * (1.0 - av1q) / (MCN * PEPS^2 * 1.0)
 
 Printf.@printf("Left: %f, Right: %f", leftside, rightside)
