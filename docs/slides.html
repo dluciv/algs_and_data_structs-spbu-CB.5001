@@ -170,7 +170,20 @@ mc.setAttribute('data-markdown', 'slides/' + md + '.md');
 				transition: 'slide', // none/fade/slide/convex/concave/zoom
 				slideNumber: 'h.v',
 
-				plugins: [ RevealMarkdown, RevealHighlight, RevealZoom, RevealNotes, RevealMath ],
+				mathjax3: {
+					mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+					 tex: {
+						inlineMath: [
+							['$', '$'],
+							['\\(', '\\)'],
+						],
+					},
+					options: {
+						skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+					},
+				},
+
+				plugins: [ RevealMarkdown, RevealHighlight, RevealZoom, RevealNotes, RevealMath.MathJax3 ],
 				markdown: {
 					smartypants: true
 				}
