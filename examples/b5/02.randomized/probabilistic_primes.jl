@@ -1,6 +1,14 @@
 ### A Pluto.jl notebook ###
 # v0.20.0
 
+#> [frontmatter]
+#> title = "Вероятностная проверка на простоту"
+#> description = "Примеры на тесты Ферма и Соловея-Штрассена"
+#> 
+#>     [[frontmatter.author]]
+#>     name = "Луцив Дмитрий Вадимович"
+#>     url = "https://edu.dluciv.name/"
+
 using Markdown
 using InteractiveUtils
 
@@ -24,34 +32,56 @@ begin
 	using ProgressLogging
 	
 	md"""
-	# Тест Ферма
-	
-	https://rosettacode.org/wiki/Fermat_numbers#Julia
+	# Вероятностные тесты на простоту
 	"""
 end
 
 # ╔═╡ 496ae66b-6082-4ef2-a132-b616aa45b613
-"""
-Вычисление символа Якоби \$\\left(\\frac{a}{n}\\right)\$
+begin
+	"""
+	Вычисление символа Якоби \$\\left(\\frac{a}{n}\\right)\$
+	
+	    jakobi(a, n)
+	
+	[Реализация](https://rosettacode.org/wiki/Jacobi_symbol#Julia)
+	"""
+	function jacobi(a, n)
+	    a %= n
+	    result = 1
+	    while a != 0
+	        while iseven(a)
+	            a ÷= 2
+	            ((n % 8) in [3, 5]) && (result *= -1)
+	        end
+	        a, n = n, a
+	        (a % 4 == n % 4 == 3) && (result *= -1)
+	        a %= n
+	    end
+	    return n == 1 ? result : 0
+	end
+	
+	md"""
+	Служебные функции
+	"""
+end;
 
-    jakobi(a, n)
+# ╔═╡ c582f0a9-c5a5-40ca-9634-905363fb4b0a
+md"""
+## Тест Ферма
 
-[Реализация](https://rosettacode.org/wiki/Jacobi_symbol#Julia)
+**Малая теорема Ферма** Если $p$ простое, то $\forall a$, не кратных $p$, справедливо $a^{p − 1} \equiv 1 \mod p$.
+
+**Тест Ферма**: если для $a > 1$ $a^{p − 1} \equiv 1 \mod p$, $p$ --- простое или псевдопростое.
+
+**Псевдопростоее число** --- составное число, проходящее тест Ферма.
+
+**Литература**
+
+* Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein (2001). "Section 31.8: Primality testing". Introduction to Algorithms (Second ed.). MIT Press; McGraw-Hill. p. 889–890.
+
+
+Реализация [навеяна...](https://rosettacode.org/wiki/Fermat_numbers#Julia)
 """
-function jacobi(a, n)
-    a %= n
-    result = 1
-    while a != 0
-        while iseven(a)
-            a ÷= 2
-            ((n % 8) in [3, 5]) && (result *= -1)
-        end
-        a, n = n, a
-        (a % 4 == n % 4 == 3) && (result *= -1)
-        a %= n
-    end
-    return n == 1 ? result : 0
-end
 
 # ╔═╡ 41c8044f-b08a-4952-9fe6-5bf8b7fe0d56
 """
@@ -74,7 +104,7 @@ end
 
 # ╔═╡ acd839bb-1be8-4834-894f-fa36f36fc366
 """
-Тест Ферма без явной длинной арифмметики, но потенциально бесполезный =)
+Тест Ферма без явной длинной арифмметики
 """
 function fpprimem(n; iterations = 10, only_consider_coprimes=false)
     for a in rand(2:n-1, iterations)
@@ -91,31 +121,29 @@ function fpprimem(n; iterations = 10, only_consider_coprimes=false)
     return true
 end
 
+# ╔═╡ d35600ff-9a4f-445e-855d-1894f06b2ad8
+md"## Проверим тест Ферма"
+
 # ╔═╡ cf8e8dd2-2ac6-4ede-8e85-9686a2a316da
 @bind fpprimemmode Radio(["software" => "Software long integers", "hardware" => "Hardware integers"], default="hardware")
 
 # ╔═╡ 096c3609-4e24-4a8d-9f24-da640f86fc8f
-begin
-	print("Только взаимно простые n и a")
-	@bind only_coprimes CheckBox()
-end
+md"""$(@bind only_coprimes CheckBox()) Только взаимно простые n и a"""
 
 # ╔═╡ ffcd757f-5c8c-4abd-9247-5c4d6b3e0fa8
-@bind fermat_iterations NumberField(5:100, default=if only_coprimes 25 else 10 end)
+md"$(@bind fermat_iterations NumberField(5:100, default=if only_coprimes 25 else 10 end)) Итераций теста Ферма"
 
-# ╔═╡ 3fce9229-ab56-40b2-8d8a-347c4bd5f5ac
+# ╔═╡ d21b75ab-922f-4467-934a-abc75a994c15
 begin
 	fpf = if fpprimemmode == "software"
 		fpprime
 	else
 		fpprimem
 	end
-end
-
-# ╔═╡ d21b75ab-922f-4467-934a-abc75a994c15
-@progress for n = 3:3000000
-	if fpf(n, iterations=fermat_iterations, only_consider_coprimes=only_coprimes) != Primes.isprime(n)
-		println("Fail on $(n)")
+	@progress for n = 3:300000
+		if fpf(n, iterations=fermat_iterations, only_consider_coprimes=only_coprimes) != Primes.isprime(n)
+			println("Врёт на $(n)")
+		end
 	end
 end;
 
@@ -124,17 +152,23 @@ first_сarmichael_numbers = [561, 1105, 1729, 2465, 2821, 6601, 8911, 10585, 158
 
 # ╔═╡ e596a53e-ad98-4778-8800-28de305440dd
 md"""
-## Числа Кармайкла
+## Обманем тест Ферма: числа Кармайкла
 
 **Число Кармайкла** — составное число $n$, которое удовлетворяет $а^{n-1}\equiv 1\pmod{n}$ для всех целых $а$, взаимно простых $n$
 
-Первые — $(join(first_сarmichael_numbers, ", ")). Если среди случайных не встретилось не взаимно простых с числами Кармайкла, тест Ферма на них ошибается
+Первые — 561, 1105, 1729, 2465, 2821, 6601, 8911, 10585, 15841, 29341, 41041, 46657, 52633, 62745, 63973, 75361. Если среди случайных не встретилось не взаимно простых с числами Кармайкла, тест Ферма на них ошибается.
 """
 
 # ╔═╡ f8a7c173-0897-497e-902e-d0c0f60d4912
 @progress for n in first_сarmichael_numbers
-    println("На $(n) $(if fpprimem(n, only_consider_coprimes=false) "" else "не " end) ошибся.")
+	fpm = fpprimem(n, iterations=fermat_iterations, only_consider_coprimes=false)
+    println("На $(n) $(if fpm "" else "не " end) ошибся.")
 end
+
+# ╔═╡ 0718150b-7e30-41f3-9c0e-96e3936a7197
+md"""
+## Тест Соловея-Штрассена
+"""
 
 # ╔═╡ fabcf136-3369-4e95-bc95-8a2be531aa5a
 """
@@ -159,30 +193,85 @@ function sstprimem(n; iterations = 10)
 end
 
 # ╔═╡ 6f7524c8-8636-45fd-82ac-43add155d81a
-@progress for n in 3:76000
-    if sstprimem(n) != Primes.isprime(n)
-        println("Fail on $(n)")
-    end
-end;
+begin
+	range_to_checkss = 3:76000
+	
+	@progress for n in range_to_checkss
+	    if sstprimem(n) != Primes.isprime(n)
+	        println("Fail on $(n)")
+	    end
+	end
+	
+	md"""## Проверим тест Соловея-Штрассена
+	
+	На диапазоне $(range_to_checkss)
+	"""
+end
+
+# ╔═╡ b5dc07a9-95c2-4c6b-9433-596724c6c601
+begin
+	first_euler_jakobi_numbers = [561, 1105, 1729, 1905, 2047, 2465, 3277, 4033, 4681, 6601, 8321, 8481, 10585, 12801, 15841, 16705, 18705, 25761, 29341, 30121, 33153, 34945, 41041, 42799, 46657, 49141, 52633, 62745, 65281, 74665, 75361, 80581, 85489, 87249, 88357, 90751, 104653]
+	md"""
+	## Обманем тест Соловея-Штрассена: Числа Эйлера-Якоби
+
+	**Число Эйлера-Якоби** – составное $n$, также удовлетворяющее [некоторому соотношению](https://en.wikipedia.org/wiki/Euler%E2%80%93Jacobi_pseudoprime), на которых с заметной вероятностью ошибается тест Соловея-Штрассена. Первые — 561, 1105, 1729, 1905, 2047, 2465, 3277, 4033, 4681, 6601, 8321, 8481, 10585, 12801, 15841, 16705, 18705, 25761, 29341, 30121, 33153, 34945, 41041, 42799, 46657, 49141, 52633, 62745, 65281, 74665, 75361.
+	
+	Множества чисел Кармайкла и Эйлера-Якоби пересекаются.	
+	"""
+end
 
 # ╔═╡ ebdd9dfb-c133-42c0-ae5a-68c1b44c79ea
-@bind strassenCharmichael Radio(["charmichael" => "Только числа Кармайкла", "random" => "Произвольные числа"], default="random")
+@bind strassenCharmichael Radio([
+	"eulerjakobi" => "Только числа Эйлера-Якоби",
+	"charmichael" => "Только числа Кармайкла",
+	"random" => "Произвольные числа"],
+default="random")
 
 # ╔═╡ 40936f93-7f36-46a8-b256-79712c9caf3b
 strassen_test = if strassenCharmichael == "charmichael"
 	first_сarmichael_numbers
+elseif strassenCharmichael == "eulerjakobi"
+	first_euler_jakobi_numbers
 else
 	rand(3:76000, length(first_сarmichael_numbers))
 end
 
 # ╔═╡ e1208101-cae5-4250-b0f4-2b6539450491
-@progress for _ in 1:100000
-    for n in strassen_test
-        if sstprimem(n)
-            println("Тест Соловея-Штрассена ошибся на $(n)!!!")
-        end
-    end
+begin
+	@progress for _ in 1:100000
+	    for n in strassen_test
+	        if sstprimem(n)
+	            println("Тест Соловея-Штрассена ошибся на $(n)!!!")
+	        end
+	    end
+	end
 end;
+
+# ╔═╡ 248cdee9-ac2b-45ee-b730-1ab5db675c07
+begin
+	function testboth(numbers_to_check)
+	    @progress for _ in 1:50
+	        for n in numbers_to_check
+	            cmn = n ∈ first_сarmichael_numbers
+	            ejn = n ∈ first_euler_jakobi_numbers
+	            if sstprimem(n, iterations = 5) != Primes.isprime(n)
+	                println("Соловея-Штрассена ошибся на $(n), ЧК: $(cmn), ЭЯ: $(ejn)")
+	            end
+	            if fpprimem(n, iterations = 5)  != Primes.isprime(n)
+	                println("Ферма ошибся             на $(n), ЧК: $(cmn), ЭЯ: $(ejn)")
+	            end
+	        end
+	    end
+	end
+
+	range_to_check = 3:76000
+	testboth(range_to_check)
+	md"""
+	## Проверим оба теста
+
+	На диапазоне $(range_to_check)
+	"""
+end
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -514,20 +603,24 @@ version = "17.4.0+2"
 # ╔═╡ Cell order:
 # ╟─a4d49bda-47f9-11ed-2630-93e53521cf7b
 # ╟─496ae66b-6082-4ef2-a132-b616aa45b613
-# ╠═41c8044f-b08a-4952-9fe6-5bf8b7fe0d56
-# ╠═acd839bb-1be8-4834-894f-fa36f36fc366
-# ╠═cf8e8dd2-2ac6-4ede-8e85-9686a2a316da
-# ╠═096c3609-4e24-4a8d-9f24-da640f86fc8f
-# ╠═ffcd757f-5c8c-4abd-9247-5c4d6b3e0fa8
-# ╠═3fce9229-ab56-40b2-8d8a-347c4bd5f5ac
-# ╠═d21b75ab-922f-4467-934a-abc75a994c15
+# ╟─c582f0a9-c5a5-40ca-9634-905363fb4b0a
+# ╟─41c8044f-b08a-4952-9fe6-5bf8b7fe0d56
+# ╟─acd839bb-1be8-4834-894f-fa36f36fc366
+# ╟─d35600ff-9a4f-445e-855d-1894f06b2ad8
+# ╟─cf8e8dd2-2ac6-4ede-8e85-9686a2a316da
+# ╟─096c3609-4e24-4a8d-9f24-da640f86fc8f
+# ╟─ffcd757f-5c8c-4abd-9247-5c4d6b3e0fa8
+# ╟─d21b75ab-922f-4467-934a-abc75a994c15
 # ╟─34d14494-83d4-4c6e-afb0-a289123060b5
 # ╟─e596a53e-ad98-4778-8800-28de305440dd
 # ╟─f8a7c173-0897-497e-902e-d0c0f60d4912
-# ╠═fabcf136-3369-4e95-bc95-8a2be531aa5a
-# ╠═6f7524c8-8636-45fd-82ac-43add155d81a
-# ╠═ebdd9dfb-c133-42c0-ae5a-68c1b44c79ea
-# ╠═40936f93-7f36-46a8-b256-79712c9caf3b
-# ╠═e1208101-cae5-4250-b0f4-2b6539450491
+# ╟─0718150b-7e30-41f3-9c0e-96e3936a7197
+# ╟─fabcf136-3369-4e95-bc95-8a2be531aa5a
+# ╟─6f7524c8-8636-45fd-82ac-43add155d81a
+# ╟─b5dc07a9-95c2-4c6b-9433-596724c6c601
+# ╟─ebdd9dfb-c133-42c0-ae5a-68c1b44c79ea
+# ╟─40936f93-7f36-46a8-b256-79712c9caf3b
+# ╟─e1208101-cae5-4250-b0f4-2b6539450491
+# ╟─248cdee9-ac2b-45ee-b730-1ab5db675c07
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
