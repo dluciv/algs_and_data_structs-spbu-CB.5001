@@ -1,0 +1,4 @@
+*.so
+*.c
+.mypy_cache/
+build/
