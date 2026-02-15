@@ -9,6 +9,7 @@ echo '=============== by row ==============='
 time ./a.out r
 echo '=============== by col ==============='
 time ./a.out c
+
 echo '========== valgrind by row ==========='
 valgrind --tool=cachegrind --cache-sim=yes ./a.out r
 echo '========== valgrind by col ==========='
