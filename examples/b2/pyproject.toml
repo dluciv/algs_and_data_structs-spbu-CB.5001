@@ -8,5 +8,5 @@ dependencies = [
     "cython>=3.2.4",
     "mypy>=1.19.1",
     "numba>=0.63.1",
-    "setuptools>=82.0.0",
+    "setuptools>=83.0.0",
 ]
