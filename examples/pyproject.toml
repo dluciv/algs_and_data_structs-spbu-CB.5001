@@ -1,5 +1,5 @@
 [project]
-name = "00-python-to-native"
+name = "b2-b5-examples"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -7,6 +7,10 @@ requires-python = ">=3.14"
 dependencies = [
     "cython>=3.2.4",
     "mypy>=1.19.1",
-    "numba>=0.63.1",
+    # "numba>=0.63.1",
     "setuptools>=82.0.0",
+    "cacheout>=0.16.0",
+    "jupyter>=1.1.1",
+    "pandas>=3.1.0",
+    "jupyterlab>=4.6.4",
 ]
